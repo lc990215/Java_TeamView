@@ -99,25 +99,31 @@ public class TeamView {
             System.out.println("添加成功");
         } catch (TeamException e) {
             System.out.println(e.getMessage());
-        } finally {
-            //按回车键继续。
-            TSUtility.readReturn();
         }
+        //按回车键继续。
+        TSUtility.readReturn();
+
     }
 
     private void deleteMember() {
-        System.out.println("\n-----------------------------------------添加成员-----------------------------------------\n");
+        System.out.println("\n-----------------------------------------删除成员-----------------------------------------\n");
         System.out.println("请输入要删除的团队成员ID：");
         int id = TSUtility.readInt();
+
+        System.out.println("确认是否删除Y/N");
+        char isDelete = TSUtility.readConfirmSelection();
+        if (isDelete == 'N') {
+            return;
+        }
         try {
             teamSvc.removeMember(id);
             System.out.println("删除成功");
         } catch (TeamException e) {
             System.out.println("删除失败，原因：" + e.getMessage());
-        } finally {
-            //按回车键继续。
-            TSUtility.readReturn();
         }
+        //按回车键继续。
+        TSUtility.readReturn();
+
 
     }
 
